@@ -1,0 +1,29 @@
+{% extends 'base/_base.html' %}
+
+{% block title %}
+  List of cities
+{% endblock title %}
+
+
+{% block content %}
+
+
+<section style="background-color: #eee;">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="">
+        <div class="card text-black">
+          <img src="{{city.image}}" style="width: 700px; height: 500px" class="rounded mx-auto d-block" />
+          <div class="card-body">
+            <div class="text-center">
+              <h5 class="card-title">{{city.name}}</h5>
+              <p class="text-muted mb-4">{{city.country.name}}</p>
+            </div>
+            <div>
+              {{city.description|safe}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,66 @@
+{% extends 'base/_base.html' %}
+
+{% block title %}
+  List of cities
+{% endblock title %}
+
+
+{% block content %}
+
+
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<div class="container">
+    <div class="row">
+        <div class="col-12 mb-3 mb-lg-5">
+            <div class="position-relative card table-nowrap table-card">
+                <div class="card-header align-items-center">
+                    <h5 class="mb-0">Cities List</h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead class="small text-uppercase bg-body text-muted">
+                            <tr>
+                                <th></th>
+                                <th>Name</th>
+                                <th>Lat</th>
+                                <th>Lon</th>
+                                <th>Country</th>
+                                <th>Flag</th>
+                            </tr>
+                        </thead>
+                        <div class="mt-2">
+                        {% with page=page_obj %}
+                        {% include 'base/_pagination.html' %}
+                        {% endwith %}
+                        </div>
+                        <tbody>
+
+                          {% for city in city_list %}
+                            <tr class="align-middle">
+                                <td>
+                                  <img src="{{ city.image }}" style="width: 45px; height: 45px" class="rounded-circle">
+                                </td>
+                                <td>
+                                  <a href="{% url 'weather:city_detail_view' slug=city.slug %}">
+                                    {{city.name}}
+                                  </a>
+                                </td>
+                                <td>{{city.lat}}</td>
+                                <td>{{city.lon}}</td>
+                                <td>{{city.country.name}}</td>
+                                <td>
+                                    <img src="{{ city.country.flag }}" width="45">
+                                </td>
+                            </tr>
+                          {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
